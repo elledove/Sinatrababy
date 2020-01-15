@@ -3,8 +3,11 @@ require './config/environment'
 class ApplicationController < Sinatra::Base
 
   configure do
+    enable :sessions
+    set :session_secret, 'just some stuff'
     set :public_folder, 'public'
     set :views, 'app/views'
+    
   end
 
   get "/" do
@@ -24,8 +27,7 @@ class ApplicationController < Sinatra::Base
    end
 
    get '/index' do
-    erb :index
-   # "boss bane"
+    erb :'shoes/index'
    end
 
 end

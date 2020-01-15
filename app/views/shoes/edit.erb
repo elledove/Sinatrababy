@@ -1,0 +1,15 @@
+<h1> Edit kicks <%=@shoe.name%></h1>
+<p> <%=@error%> </p>
+<form action="/shoes/<%=@shoe.id%>" method="post">
+<input type="hidden" name="_method" value="patch">
+<label> Name </label>
+<input type="text" name="shoe[name]" value="<%=@shoe.name%>">
+<label> Description </label>
+<textarea name="shoe[description]"><%= @shoe.description%>"></textarea>
+<label> Image Url </label>
+
+<input type="text" name="shoe[image]" value="<%@shoe.image%>"> 
+<button type="submit"> Add Shoes</button> 
+
+
+</form> 
