@@ -7,7 +7,12 @@ class ShoesController < ApplicationController
     #Create 
         #-new- creating a new shoe profile.(get '/shoes/new' get request)
         get '/shoes/new' do 
+          if logged_in?
            erb :'shoes/new'
+          else
+            redirect '/login'
+
+          end
         end
         #-create- the form is submitted and the shoe is added to collection (post '/shoes' post request)
         post '/shoes' do
@@ -25,22 +30,34 @@ class ShoesController < ApplicationController
       #-index- like and index of ALL the shoes (get '/shoes' get request)
 
       get '/shoes' do 
+        if logged_in?
         @shoes = Shoes.all
         erb :'shoes/index'
+        else
+         redirect '/login'
+        
+        end
       end
       #-show- like im SHOWing you what you specifically asked for.(get '/shoes/:id get request)
       get '/shoes/:id' do 
+        if logged_in?
         @shoe= Shoes.find(params[:id])
         erb :'shoes/show'
+        else  
+          redirect '/login'
       end
 
     #Update
 
         #-edit-Should render the form to edit shoes (get '/shoes/:id/edit' get request)
         get '/shoes/:id/edit' do
+          if logged_in?
           @shoe = Shoes.find(params[:id])
           erb :'shoes/edit'
+          else  
+            redirect '/login'
         end
+      end
         #-update- form is submitted. Make patch request with updated info(patch '/shoes/:id)
         patch '/shoes/:id' do 
           @shoe = Shoes.find(params[:id])

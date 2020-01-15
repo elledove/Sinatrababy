@@ -2,9 +2,12 @@
 
 <a href="/shoes/new">Add more shoes to your collection</a>
 
-<%@shoes.each do |shoe|%>
-<h2> <%=shoe.name%> </h2>
+<% @shoes.each do |shoe|%>
+<h2><a href="/shoes/<%= shoe.id %>"><%= shoe.name%></a></h2>
  <p> <%=shoe.description%> </p>
- <img src="<%=shoe.image%>" alt ="shoe"
- <%end%>
+ <img src="<%=shoe.image%>" alt ="shoe">
 
+ <%if session[:user_id]== shoe.user.id%>
+ <a href="/shoes/<%= shoe.id %>/edit">Edit</a>
+ <%end%>
+<%end%>
