@@ -2,61 +2,55 @@ require './config/environment'
 
 class ShoesController < ApplicationController
 
-    #I need this to use CRUD
+    before do 
+      require_login
+    end
 
     #Create 
         #-new- creating a new shoe profile.(get '/shoes/new' get request)
         get '/shoes/new' do 
-          if logged_in?
-           erb :'shoes/new'
-          else
-            redirect '/login'
-
-          end
+          erb :'shoes/new'
         end
         #-create- the form is submitted and the shoe is added to collection (post '/shoes' post request)
         post '/shoes' do
-         shoe = Shoes.new(params) #we want to control the saved data. IF its inaccurate or not
-         if !shoe.name.empty? && !shoe.description.empty? #checking to make sure form is complete b4 saving.
-          shoe.save
-          redirect '/shoes'
+          custom_params = params.reject{|key,value|key == "image" && value.empty?} #we dont want to require image
+          shoe = current_user.shoes.build(custom_params) #prevents just anyone making changes. has to be current user
+         user.image = nil if user.image.empty?
+          if shoe.save 
+           redirect '/shoes'
 
          else 
-          erb :'shoes/new'
-         end
+           @error = "Try Again?"
+           erb :'shoes/new'
+          end
         end
 
     #Read 
       #-index- like and index of ALL the shoes (get '/shoes' get request)
 
       get '/shoes' do 
-        if logged_in?
         @shoes = Shoes.all
         erb :'shoes/index'
-        else
-         redirect '/login'
-        
-        end
+  
       end
       #-show- like im SHOWing you what you specifically asked for.(get '/shoes/:id get request)
       get '/shoes/:id' do 
-        if logged_in?
-        @shoe= Shoes.find(params[:id])
+        @shoe = Shoes.find_by(id: params[:id])
+        if @shoe 
         erb :'shoes/show'
         else  
-          redirect '/login'
-      end
+
+          redirect :'/shoes'
+        end
+      
+    end
 
     #Update
 
         #-edit-Should render the form to edit shoes (get '/shoes/:id/edit' get request)
         get '/shoes/:id/edit' do
-          if logged_in?
           @shoe = Shoes.find(params[:id])
           erb :'shoes/edit'
-          else  
-            redirect '/login'
-        end
       end
         #-update- form is submitted. Make patch request with updated info(patch '/shoes/:id)
         patch '/shoes/:id' do 

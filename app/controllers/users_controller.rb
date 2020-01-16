@@ -7,17 +7,12 @@ class UserController < ApplicationController
 
     post '/signup' do
         user= User.new(params)
-        if user.username.empty? || user.password.empty?
-            @error = "Username and password required!"
-            erb :'users/signup'
-
-        elsif User.find_by(username: user.username)
-            @error = "Looks like that already exists :("
-            erb :'users/signup'
-        else
-            user.save
-            session[:user_id] = user.id
+        if user.save
+            session[:id]= user.id
             redirect '/shoes'
+        else
+            @error = "Username and Password Required!"
+            erb :'/users/signup'
      end
   end
 
