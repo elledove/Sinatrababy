@@ -9,8 +9,8 @@ post '/login' do
         if params["username"].empty? || params["password"].empty?
             @error = "Username and password required!"
             erb :'users/login'
-        elsif
-          user = User.find_by(username: params["username"], password: params["password"])
+        else  
+          if user = User.find_by(username: params["username"]) && user.authenticate(params["password"])
           session[:user_id] = user.id
           redirect '/shoes'
             
@@ -20,6 +20,7 @@ post '/login' do
 
      end
   end
+end
 
   get '/logout' do
 session.clear
