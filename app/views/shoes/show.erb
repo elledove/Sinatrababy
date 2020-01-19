@@ -1,10 +1,11 @@
 <h1><%=@shoe.name%></h1>
-<h1><%=@shoe.description%></h1>
+<p><%=@shoe.description%></p>
 <img sourc="<%=@shoe.image%>" alt="shoe">
-<form action="/recipes/<%=@shoe.id%>" method="post"
-input type="hidden" name="_method" value="delete">
+<form action="/shoes/<%=@shoe.id%>" method="post">
+
+<input type="hidden" name="_method" value="delete">
 
 <% if @shoe.user == current_user%> 
-<button type="submt"> Delete Shoe</button>
+<button type="submit"> Delete Shoe</button>
 <% end %>
 </form>

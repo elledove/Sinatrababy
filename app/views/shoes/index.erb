@@ -4,7 +4,7 @@
 
 <% @shoes.each do |shoe|%>
 <h2><a href="/shoes/<%= shoe.id %>"><%= shoe.name%></a></h2>
- <p> <%=shoe.description%> </p>
+  <!-- <p> <%=shoe.description%> </p> --> 
  <img src="<%=shoe.image%>" alt ="shoe">
 
   <%if current_user == shoe.user%>

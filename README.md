@@ -1,16 +1,19 @@
-This is the 2nd of 5 projects that I will be completing. This project will focus on using Sinatra to create Control Management System based-app that(can) will me keep track of my ever growing shoe(sneaker) collection and other people as well. They can message on another to trade shoes or buy shoes.
+This is the 2nd of 5 projects that I will be completing. This project will focus on using Sinatra CRUD Apllicaton to create Control Management System based-app. Utilizing RESTful routes, this app will shoes lovers like myslef keep track of their ever growing shoe(sneaker) collection.
+They can message on another to trade shoes or buy shoes.(This feature is coming soon.)
 
 
 
-What do I need to accomplish?:
-I want to be able to keep track of my sneakers and other peoples sneakers.
-
-What must my app have/do?
->Users
->A way  for U to signup,login,logout
->Validate that each U is themselves(via email or username)
->A way for each U to keep track of only their shoes.
-> each U should be able to Create, Read, Update, and/or Destroy their collection of shoes.
->make sure U do not have the ability to edit and/or delete other peoples stuff.
 
 
+
+
+
+
+~How To Use The App~
+To run this app, fork and clone the repo.
+
+Run bundle install.
+
+Then run shotgun to start up a server.
+
+You should see the app running on localhost:9393.

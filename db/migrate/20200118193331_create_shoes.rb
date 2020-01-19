@@ -1,4 +1,4 @@
-class Createshoes < ActiveRecord::Migration
+class CreateShoes < ActiveRecord::Migration
   def change
     create_table :shoes do |s|
       s.string :name

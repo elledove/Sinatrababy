@@ -1,4 +1,4 @@
-class User  < ActiveRecord::Base 
+class User < ActiveRecord::Base 
     has_secure_password #method from bcrypt
     validates :username, :password, presence: true  #Macro Validates that the username/password are both present.
     validates_uniqueness_of :username
