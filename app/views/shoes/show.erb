@@ -1,6 +1,6 @@
 <h1><%=@shoe.name%></h1>
 <p><%=@shoe.description%></p>
-<img sourc="<%=@shoe.image%>" alt="shoe">
+<img src="<%=@shoe.image%>" alt="shoe">
 <form action="/shoes/<%=@shoe.id%>" method="post">
 
 <input type="hidden" name="_method" value="delete">
