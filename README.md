@@ -17,3 +17,13 @@ Run bundle install.
 Then run shotgun to start up a server.
 
 You should see the app running on localhost:9393.
+
+
+
+To contribute:
+
+Fork and clone this repository
+
+Commit a change, and push to your github fork
+
+Submit a pull request for your changes to be included!
